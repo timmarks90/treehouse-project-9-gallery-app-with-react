@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { SearchForm } from './SearchForm';
-import { Nav } from './Nav';
+import Nav from './Nav';
 
 export class Header extends Component {
+
   render() {
     return (
       <div>
-        <SearchForm />
+        <SearchForm onSearch={this.props.onSearch} />
 
         <Nav />
       </div>

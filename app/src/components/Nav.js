@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
-export class Nav extends Component {
-  render() {
-    return (
-      <div>
-        <nav className="main-nav">
-          <ul>
-            <li><Link to='#'>Cats</Link></li>
-            <li><Link to='#'>Dogs</Link></li>
-            <li><Link to='#'>Computers</Link></li>
-          </ul>
-        </nav>
-      </div>
-    )
-  }
-}
+const Nav = props => (
+  <div>
+    <nav className="main-nav">
+      <ul>
+        <li><Link to='/cats'>Cats</Link></li>
+        <li><Link to='/dogs'>Dogs</Link></li>
+        <li><Link to='/computers'>Computers</Link></li>
+      </ul>
+    </nav>
+    <Route path="/cats"/>
+  </div>
+)
 
 export default Nav;

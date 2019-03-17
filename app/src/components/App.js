@@ -3,7 +3,7 @@ import '.././App.css';
 import apiKey from '.././Config';
 import Header from './Header';
 import Gallery from './Gallery';
-import {BrowserRouter, Route, Redirect} from 'react-router-dom';
+import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
 
 class App extends Component {
 
@@ -11,7 +11,8 @@ class App extends Component {
     super();
     this.state = {
       images: [],
-      loading: true
+      loading: true,
+      searchQuery: ''
     };
   }
 
@@ -25,7 +26,8 @@ class App extends Component {
       .then(res => {
         this.setState({ 
           images: res.photos.photo,
-          loading: false
+          loading: false,
+          searchQuery: query
         });
       })
       .catch( err => {
@@ -38,17 +40,26 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">          
-          {/* Redirect to /sunset on home route */}
-          <Route exact path="/" render={ () => <Redirect to="/sunset" /> } />
-          
-          <Route exact path="/:query" render={() =>
-            <React.Fragment>
-              <Header onSearch={this.search} />
-              {
-                (this.state.loading) ? <p>Loading...</p> : <Gallery photos={this.state.images} />
-              }
-            </React.Fragment>
-          } />
+          <Switch>
+            {/* Redirect to /sunset on home route */}
+            <Route exact path="/" render={ () => <Redirect to="/sunset" /> } />
+            <Route exact path='/:query' component={ history =>
+              <React.Fragment>
+                <Header 
+                  onSearch={this.search} 
+                  history={history}
+                />
+                {
+                  (this.state.loading)
+                  ? <p>Loading...</p>
+                  : <Gallery 
+                      photos={this.state.images}
+                      searchQuery={this.state.searchQuery}
+                    />
+                }
+              </React.Fragment>
+            } />
+          </Switch>
         </div>
       </BrowserRouter>
     );

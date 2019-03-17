@@ -16,7 +16,7 @@ const Gallery = props => {
   
   return (
     <div className="photo-container">
-        <h2>results</h2>
+        <h2>{props.searchQuery} Images</h2>
         <ul>
           {images}
         </ul>

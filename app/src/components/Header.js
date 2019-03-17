@@ -2,17 +2,14 @@ import React, { Component } from 'react'
 import { SearchForm } from './SearchForm';
 import Nav from './Nav';
 
-export class Header extends Component {
+const Header = ({onSearch, history}) => {
+  return (
+    <React.Fragment>
+      <SearchForm onSearch={onSearch} history={history} />
 
-  render() {
-    return (
-      <div>
-        <SearchForm onSearch={this.props.onSearch} />
-
-        <Nav />
-      </div>
-    )
-  }
-}
+      <Nav onSearch={onSearch} />
+    </React.Fragment>
+  );
+};
 
 export default Header;

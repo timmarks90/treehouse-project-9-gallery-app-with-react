@@ -4,7 +4,7 @@ import NoMatch from './NoMatch';
 
 const Gallery = props => {
   
-  const results = props.data;
+  const results = props.photos;
   let images;
   if (results.length > 0) {
     images = results.map(image => 
@@ -16,7 +16,7 @@ const Gallery = props => {
   
   return (
     <div className="photo-container">
-        <h2>Results</h2>
+        <h2>results</h2>
         <ul>
           {images}
         </ul>

@@ -40,10 +40,15 @@ class App extends Component {
         <div className="container">          
           {/* Redirect to /sunset on home route */}
           <Route exact path="/" render={ () => <Redirect to="/sunset" /> } />
-          <Header onSearch={this.search} />
-          {
-            (this.state.loading) ? <p>Loading...</p> : <Gallery data={this.state.images} />
-          }
+          
+          <Route exact path="/:query" render={() =>
+            <React.Fragment>
+              <Header onSearch={this.search} />
+              {
+                (this.state.loading) ? <p>Loading...</p> : <Gallery photos={this.state.images} />
+              }
+            </React.Fragment>
+          } />
         </div>
       </BrowserRouter>
     );

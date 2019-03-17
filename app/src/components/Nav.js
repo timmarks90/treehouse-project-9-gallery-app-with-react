@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Route } from 'react-router-dom';
+import { Link, BrowserRouter, Route} from 'react-router-dom';
 
 const Nav = props => (
   <div>
@@ -11,7 +10,6 @@ const Nav = props => (
         <li><Link to='/computers'>Computers</Link></li>
       </ul>
     </nav>
-    <Route path="/cats"/>
   </div>
 )
 

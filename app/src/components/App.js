@@ -4,6 +4,7 @@ import apiKey from '.././Config';
 import Header from './Header';
 import Gallery from './Gallery';
 import {BrowserRouter, Route, Redirect, Switch} from 'react-router-dom';
+import NotFound from './NoMatch';
 
 class App extends Component {
 
@@ -17,10 +18,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.search();
+    this.search('sunset');
   }
 
-  search = (query = 'sunset') => {
+  search = (query) => {
     fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=24&format=json&nojsoncallback=1`)
       .then(res => res.json())
       .then(res => {
@@ -36,14 +37,13 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.images);
     return (
       <BrowserRouter>
         <div className="container">          
           <Switch>
             {/* Redirect to /sunset on home route */}
             <Route exact path="/" render={ () => <Redirect to="/sunset" /> } />
-            <Route exact path='/:query' component={ history =>
+            <Route path='/:query' render={ history =>
               <React.Fragment>
                 <Header 
                   onSearch={this.search} 
@@ -59,6 +59,7 @@ class App extends Component {
                 }
               </React.Fragment>
             } />
+            <Route component={NotFound} />
           </Switch>
         </div>
       </BrowserRouter>

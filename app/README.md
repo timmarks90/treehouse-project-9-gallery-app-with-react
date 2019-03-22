@@ -1,4 +1,4 @@
-To add your Flikr API key, create a Config.js file with: 
+To add your Flickr API key, create a Config.js file with: 
 ` const apiKey = 'YOUR_API_KEY'; `
 ` export default apiKey;`
 

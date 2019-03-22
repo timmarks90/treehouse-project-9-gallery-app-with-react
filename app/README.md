@@ -1,3 +1,8 @@
+To add your Flikr API key, create a Config.js file with: 
+### const apiKey = 'YOUR_API_KEY';
+### export default apiKey;
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
